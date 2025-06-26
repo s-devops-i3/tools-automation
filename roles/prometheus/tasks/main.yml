@@ -5,7 +5,7 @@
     remote_src: yes
 
 - name: copy service file
-  ansible.builtin.systemd_service:
+  ansible.builtin.template:
     src: prometheus.service
     dest: /etc/systemd/system/prometheus.service
 
