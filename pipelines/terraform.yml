@@ -18,5 +18,5 @@ pipelines:
           jobs:
             terraform-apply:
               tasks:
-                - exec: {command: terraform, arguments: [ "init",  ], run_if: passed}
+                - exec: {command: terraform, arguments: [ "init" ], run_if: passed}
                 - exec: {command: terraform, arguments: [ "apply", "-var-file=values/values.tfvars", "-auto-approve" ], run_if: passed}
