@@ -1,9 +1,7 @@
-variable "instance_type" {}
-
 variable "tool_name" {
   default = {
     prometheus = {
-      name = "Prometheus"
+      instance_type = "t3.small"
     }
   }
 }
