@@ -10,8 +10,7 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_route53_record" "record" {
-  for_each = var.tool_name
-  name    = each.key
+   name    = var.tool_name["prometheus"]["name"]
   type    = "A"
   zone_id = var.zone_id
   records = [aws_instance.instance.public_ip]
