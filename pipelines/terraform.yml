@@ -1,0 +1,22 @@
+format_version: 10
+pipelines:
+  tools-tf-apply:
+    group: Terraform
+    materials:
+      git-da613e5:
+        git: https://github.com/s-devops-i3/tools-automation.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    #    secure_variables:
+    #      TF_VAR_vault_token: AES:Q67ao+nSos1av1ldpBh3nw==:FOP/PO/1Jxq3QtP+a2x3r3Biq1/WDjvIHSBY3g2Yplw=
+    stages:
+      - DEV:
+          fetch_materials: true
+          approval:
+            type: manual
+          jobs:
+            terraform-apply:
+              tasks:
+                - exec: {command: terraform, arguments: [ "init",  ], run_if: passed}
+                - exec: {command: terraform, arguments: [ "apply", "-var-file=values/values.tfvars", "-auto-approve" ], run_if: passed}
