@@ -1,0 +1,5 @@
+- name: Tools Setup
+  hosts: all
+  become: yes
+  roles:
+    - "{{ tool_name }}"
