@@ -29,6 +29,28 @@ resource "aws_iam_role" "role" {
     Name = "${var.tool_name}-role"
   }
 }
+  resource "aws_iam_policy" "describe_ec2_policy" {
+    name = "${var.tool_name}-policy"
+
+    policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action   = var.policy_resource_list
+          Effect   = "Allow"
+          Resource = "*"
+        },
+      ]
+    })
+  }
+
+resource "aws_iam_role_policy_attachment" "attach_policy" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.describe_ec2_policy.arn
+}
+
+
+
 
 
 resource "aws_route53_record" "record" {
