@@ -2,6 +2,7 @@ resource "aws_instance" "instance" {
   ami                    = data.aws_ami.ami.image_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.selected.id]
+  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 
   tags = {
     Name = var.tool_name
@@ -48,7 +49,10 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
   role       = aws_iam_role.role.name
   policy_arn = aws_iam_policy.describe_ec2_policy.arn
 }
-
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = "${var.tool_name}-role"
+  role = aws_iam_role.role.name
+}
 
 
 
