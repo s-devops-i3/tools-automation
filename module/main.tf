@@ -38,7 +38,7 @@ resource "aws_iam_role" "role" {
   }
 }
   resource "aws_iam_policy" "describe_ec2_policy" {
-    name = "describe_ec2_policy"
+    name = "${var.tool_name}-describe_ec2_policy"
 
     policy = jsonencode({
       Version = "2012-10-17"
