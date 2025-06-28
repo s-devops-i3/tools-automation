@@ -12,7 +12,7 @@
     state: installed
 
 - name: Start grafana
-  ansible.builtin.sytemd_service:
+  ansible.builtin.systemd_service:
     name: grafana-server
     state: restarted
     enabled: true
