@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  Grafana:
+  Vault:
     group: Tools
     materials:
       git-da613e5:
