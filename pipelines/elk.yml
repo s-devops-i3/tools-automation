@@ -1,0 +1,21 @@
+format_version: 10
+pipelines:
+  elk:
+    group: Tools
+    materials:
+      git-da613e5:
+        git: https://github.com/s-devops-i3/tools-automation.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+#        secure_variables:
+#          TF_VAR_vault_token: AES:VFgCuSEMb1n5L7YhiV+pdw==:uL7O8jiPwXzIte8/UHC3c+kxkipDqBc7q9Z/rXh10wM=
+    stages:
+      - DEV:
+          fetch_materials: true
+          approval:
+            type: manual
+          jobs:
+            apply:
+              tasks:
+                - exec: {command: ansible-playbook, arguments: [ "-i", "elk-internal.shujadevops.shop,", "-e", "tool_name=elk", "-e", "ansible_user=ec2-user", "-e", "ansible_password=DevOps321" , "tools.yml" ], run_if: passed}
