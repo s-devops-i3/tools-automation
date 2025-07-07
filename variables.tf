@@ -16,6 +16,12 @@ variable "tool_name" {
       policy_resource_list = []
 
     }
+
+    elk = {
+      instance_type = "r7i.large"
+      policy_resource_list = []
+
+    }
   }
 }
 variable "zone_id" {}
