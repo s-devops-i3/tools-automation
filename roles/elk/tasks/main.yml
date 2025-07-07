@@ -37,8 +37,9 @@
 - name: start kibana
   ansible.builtin.systemd_service:
     name: kibana
-    state: started
+    state: restarted
     enabled: true
+
 
 #--------------------------------------------------
 
